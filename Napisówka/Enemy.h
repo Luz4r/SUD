@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 #include "Character.h"
 
 class Enemy :
@@ -17,5 +17,5 @@ public:
 	void move();
 	int getValue(char[]);
 	void setValue(char[], int);
-};*/
+};
 

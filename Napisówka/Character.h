@@ -1,8 +1,4 @@
 #pragma once
-#include "Game.h"
-#include "Enemy.h"
-#include "Player.h"
-#include "NPC.h"
 
 class Character
 {

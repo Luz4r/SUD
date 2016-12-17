@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 #include "Character.h"
 
 class NPC :
@@ -15,5 +15,5 @@ public:
 	NPC(unsigned short int = 1, char[] = "NPC", char[] = "Rasa", char[] = "Klasa", unsigned int = 1, unsigned int = 1);
 	~NPC();
 	void move();
-};*/
+};
 

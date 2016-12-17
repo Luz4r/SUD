@@ -123,12 +123,12 @@ void Game::runMenu()
 
 void Game::play()
 {
-	Player player(10, "Rafal", "Czlowiek", "Wojownik");
-	/*Enemy wolf(5, "Wolf", "Wolf", "Wojownik");
-	fight(wolf, player);*/
+	Player player(5, "Rafal", "Czlowiek", "Wojownik", 1, 1);
+	Enemy wolf(5, "Wilk", "Wilk", "Wojownik", 1, 1);
+	fight(wolf, player);
 }
 
-void Game::fight()
+void Game::fight(Character a, Character b)
 {
 	state = FIGHT;
 	while (FIGHT == state)

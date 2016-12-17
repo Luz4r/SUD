@@ -1,7 +1,9 @@
 #pragma once
 #include "curses.h"
 #include "Character.h"
-#include <ctime>
+#include "Player.h"
+#include "Enemy.h"
+#include "NPC.h"
 
 class Game
 {
@@ -22,6 +24,6 @@ public:
 	void createColors();
 	void runMenu();
 	void play();
-	void fight();
+	void fight(Character, Character);
 };
 

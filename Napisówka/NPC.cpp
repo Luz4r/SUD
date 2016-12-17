@@ -1,6 +1,4 @@
-/*#include "NPC.h"
-
-
+#include "NPC.h"
 
 NPC::NPC(unsigned short int x, char name[], char race[], char cClass[], unsigned int attack, unsigned int defense)
 {
@@ -23,4 +21,4 @@ NPC::~NPC()
 
 void NPC::move()
 {
-}*/
+}
