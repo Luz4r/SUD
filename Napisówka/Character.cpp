@@ -1,9 +1,11 @@
 #include "Character.h"
 
 
-Character::Character(unsigned short int x, char name[], char race[], char cClass[])
+Character::Character(unsigned short int x, char name[], char race[], char cClass[], unsigned int attack, unsigned int defense)
 {
 	health = x;
+	defense_value = defense;
+	attack_value = attack;
 	charName = new char [sizeof(name)];
 	charRace = new char [sizeof(race)];			
 	charClass = new char [sizeof(cClass)];
@@ -22,10 +24,20 @@ void Character::move()
 {
 }
 
-void Character::variable_out(Character postac)
+int Character::getValue(char value[])
 {
-	printw("Nazwa: %s\n", postac.charName);
-	printw("Rasa: %s\n", postac.charRace);
-	printw("Klasa: %s\n", postac.charClass);
-	printw("Ilosc punktow zycia: %d\n", postac.health);
+	if ("attack" == value)
+		return attack_value;
+	if ("defense" == value)
+		return defense_value;
+	else
+		return 0;
+}
+
+void Character::setValue(char value[], int x)
+{
+	if ("attack" == value)
+		attack_value = x;
+	if ("defense" == value)
+		defense_value = x;
 }

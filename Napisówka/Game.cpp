@@ -125,14 +125,14 @@ void Game::play()
 {
 	Player player(10, "Rafal", "Czlowiek", "Wojownik");
 	Enemy wolf(5, "Wolf", "Wolf", "Wojownik");
-	player.setValue("attack", 5);
 	fight(wolf, player);
 }
 
-void Game::fight(Character a, Character b)
+void Game::fight()
 {
-	while (state == FIGHT)
+	state = FIGHT;
+	while (FIGHT == state)
 	{
-		
+	
 	}
 }

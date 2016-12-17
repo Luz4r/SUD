@@ -1,22 +1,22 @@
 #pragma once
 #include "Game.h"
-#include "Player.h"
 #include "Enemy.h"
+#include "Player.h"
 #include "NPC.h"
-
 
 class Character
 {
+private:
 	unsigned short int health;
 	char *charName;
 	char *charRace;
 	char *charClass;
-public:
 	unsigned int attack_value;
 	unsigned int defense_value;
-	Character(unsigned short int = 1, char[] = "Nazwa", char[] = "Rasa", char[] = "Klasa");
+public:
+	Character(unsigned short int = 1, char[] = "Nazwa", char[] = "Rasa", char[] = "Klasa", unsigned int = 1, unsigned int = 1);
 	~Character();
 	virtual void move();
-	void variable_out(Character);
+	virtual int getValue(char[]);
+	virtual void setValue(char[], int);
 };
-

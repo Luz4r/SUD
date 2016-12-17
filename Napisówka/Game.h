@@ -22,6 +22,6 @@ public:
 	void createColors();
 	void runMenu();
 	void play();
-	void fight(Character, Character);
+	void fight();
 };
 
