@@ -1,4 +1,4 @@
-#include "Enemy.h"
+/*#include "Enemy.h"
 
 
 
@@ -41,4 +41,4 @@ void Enemy::setValue(char value[], int x)
 		attack_value = x;
 	if ("defense" == value)
 		defense_value = x;
-}
+}*/

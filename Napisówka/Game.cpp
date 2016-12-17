@@ -124,8 +124,8 @@ void Game::runMenu()
 void Game::play()
 {
 	Player player(10, "Rafal", "Czlowiek", "Wojownik");
-	Enemy wolf(5, "Wolf", "Wolf", "Wojownik");
-	fight(wolf, player);
+	/*Enemy wolf(5, "Wolf", "Wolf", "Wojownik");
+	fight(wolf, player);*/
 }
 
 void Game::fight()
