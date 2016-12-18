@@ -28,22 +28,23 @@ void Character::move()
 {
 }
 
-int Character::getValue(char value[])
+int Character::getValue(Value value)
 {
-	if ("defense" == value)
-		return defense_value;
-	else if ("health" == value)
+	switch (value)
+	{
+	case Health:
 		return health;
-	else if ("crit_chance" == value)
-		return crit_chance;
-	else if ("hit_chance" == value)
-		return hit_chance;
-	else if ("damage_min" == value)
-		return damage_min;
-	else if ("damage_max" == value)
+	case Defense:
+		return defense_value;
+	case DamageMax:
 		return damage_max;
-	else
-		return 0;
+	case DamageMin:
+		return damage_min;
+	case HitChance:
+		return hit_chance;
+	case CritChance:
+		return crit_chance;
+	}
 }
 
 void Character::setValue(Value value, int x)
@@ -52,37 +53,52 @@ void Character::setValue(Value value, int x)
 	{
 	case Health:
 		health = x;
+		break;
 	case defenseValuePlus:
 		defense_value += x;
+		break;
 	case defenseValueMinus:
 		defense_value -= x;
+		break;
 	case damage_maxPlus:
 		damage_max += x;
+		break;
 	case damage_maxMinus:
 		damage_max -= x;
+		break;
 	case damage_minPlus:
 		damage_min += x;
+		break;
 	case damage_minMinus:
 		damage_min -= x;
+		break;
 	case hit_chancePlus:
 		hit_chance += x;
+		break;
 	case hit_chanceMinus:
 		hit_chance -= x;
+		break;
 	case crit_chancePlus:
 		crit_chance += x;
+		break;
 	case crit_chanceMinus:
 		crit_chance -= x;
+		break;
 	}
-	/*if ("defense" == value)
-		defense_value = x;
-	else if ("health" == value)
-		health = x;
-	else if ("crit_chance" == value)
-		crit_chance = x;
-	else if ("hit_chance" == value)
-		hit_chance = x;
-	else if ("damage_min" == value)
-		damage_min = x;
-	else if ("damage_max" == value)
-		damage_max = x;*/
+}
+
+char* Character::getChar(Value value)
+{
+	switch (value)
+	{
+	case Name:
+		return charName;
+		break;
+	case Race:
+		return charRace;
+		break;
+	case Class:
+		return charClass;
+		break;
+	}
 }

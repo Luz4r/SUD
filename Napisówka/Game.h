@@ -1,5 +1,7 @@
 #pragma once
 #include "curses.h"
+#include <ctime>
+#include <cstdlib>
 #include "Character.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -24,6 +26,6 @@ public:
 	void createColors();
 	void runMenu();
 	void play();
-	void fight(Character, Character);
+	void fight(Player, Enemy);
 };
 
