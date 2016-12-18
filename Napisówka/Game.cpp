@@ -123,16 +123,34 @@ void Game::runMenu()
 
 void Game::play()
 {
-	Player player(5, "Rafal", "Czlowiek", "Wojownik", 1, 1);
-	Enemy wolf(5, "Wilk", "Wilk", "Wojownik", 1, 1);
+	Player player(5, "Rafal", "Czlowiek", "Wojownik", 4, 9);
+	Enemy wolf(5, "Wilk", "Wilk", "Wojownik", 5, 6);
 	fight(wolf, player);
 }
 
 void Game::fight(Character a, Character b)
 {
+	//Character a, values
+	unsigned short int a_health = a.getValue("health");
+	unsigned short int a_attack = a.getValue("attack");
+	unsigned short int a_defense = a.getValue("defense");
+
+	//Character b, values
+	unsigned short int b_health = b.getValue("health");
+	unsigned short int b_attack = b.getValue("attack");
+	unsigned short int b_defense = b.getValue("defense");
+
 	state = FIGHT;
+
 	while (FIGHT == state)
 	{
-	
+		
+
+		if (a_health == 0 || b_health == 0);
+		{
+			a.setValue("health", a_health);
+			b.setValue("health", b_health);
+			state = MENU;
+		}
 	}
 }

@@ -29,8 +29,10 @@ int Player::getValue(char value[])
 {
 	if("attack" == value)
 		return attack_value;
-	if ("defense" == value)
+	else if ("defense" == value)
 		return defense_value;
+	else if ("health" == value)
+		return health;
 	else
 		return 0;
 }
@@ -39,6 +41,8 @@ void Player::setValue(char value[], int x)
 {
 	if ("attack" == value)
 		attack_value = x;
-	if ("defense" == value)
+	else if ("defense" == value)
 		defense_value = x;
+	else if ("health" == value)
+		health = x;
 }

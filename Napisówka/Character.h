@@ -3,12 +3,12 @@
 class Character
 {
 private:
-	unsigned short int health;
 	char *charName;
 	char *charRace;
 	char *charClass;
-	unsigned int attack_value;
-	unsigned int defense_value;
+	unsigned short int health;
+	unsigned short int attack_value;
+	unsigned short int defense_value;
 public:
 	Character(unsigned short int = 1, char[] = "Nazwa", char[] = "Rasa", char[] = "Klasa", unsigned int = 1, unsigned int = 1);
 	~Character();
