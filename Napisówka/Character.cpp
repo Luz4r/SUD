@@ -1,22 +1,18 @@
 #include "Character.h"
 
-
-Character::Character(unsigned short int x, char name[], char race[], char cClass[], unsigned int defense, unsigned short int damageMIN, unsigned short int damageMAX, unsigned int hitChance, unsigned int critChance)
+Character::Character(char name[], Rasa race, Klasa cClass, unsigned short int x, unsigned int defense, unsigned short int damageMIN, unsigned short int damageMAX, unsigned int hitChance, unsigned int critChance)
 {
+	charName = new char[sizeof(name)];
+	charName = name;
+	charRace = race;
+	charClass = cClass;
+
 	health = x;
 	defense_value = defense;
 	damage_min = damageMIN;
 	damage_max = damageMAX;
 	crit_chance = critChance;
 	hit_chance = hitChance;
-
-
-	charName = new char [sizeof(name)];
-	charRace = new char [sizeof(race)];			
-	charClass = new char [sizeof(cClass)];
-	charName = name;
-	charRace = race;
-	charClass = cClass;
 }
 
 
@@ -24,15 +20,11 @@ Character::~Character()
 {
 }
 
-void Character::move()
-{
-}
-
-int Character::getValue(Value value)
+int Character::getValue(gettingValue value)
 {
 	switch (value)
 	{
-	case Health:
+	case getHealth:
 		return health;
 	case Defense:
 		return defense_value;
@@ -47,11 +39,11 @@ int Character::getValue(Value value)
 	}
 }
 
-void Character::setValue(Value value, int x)
+void Character::setValue(settingValue value, int x)
 {
 	switch (value)
 	{
-	case Health:
+	case setHealth:
 		health = x;
 		break;
 	case defenseValuePlus:
@@ -87,18 +79,41 @@ void Character::setValue(Value value, int x)
 	}
 }
 
-char* Character::getChar(Value value)
+char* Character::getName()
 {
-	switch (value)
-	{
-	case Name:
 		return charName;
-		break;
-	case Race:
-		return charRace;
-		break;
-	case Class:
-		return charClass;
-		break;
+}
+
+char* Character::getRace()
+{
+	switch (charRace)
+	{
+	case NULL_Race:
+		return "Brak rasy";
+	case Cz³owiek:
+		return "Czlowiek";
+	case Elf:
+		return "Elf";
+	case Krasnolud:
+		return "Krasnolud";
+	case Gnom:
+		return "Gnom";
 	}
 }
+
+char* Character::getClass()
+{
+	switch (charClass)
+	{
+	case NULL_Class:
+		return "Brak klasy";
+	case Wojownik:
+		return "Wojownik";
+	case £ucznik:
+		return "Lucznik";
+	case £otrzyk:
+		return "Lotrzyk";
+	}
+}
+
+

@@ -55,10 +55,99 @@ void Game::createColors()
 {
 	start_color();
 	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+}
+
+void Game::createPlayer()
+{
+	char *name;
+	Character::Rasa playerRace;
+	Character::Klasa playerClass;
+
+	unsigned short int number;
+
+	printw("Podaj swoje imie: ");
+	echo();
+	getstr(name = new char [sizeof(name)]);
+
+	do {
+		chooseRace();
+		number = getch();
+	} while (number < 49 || number > 52);
+
+	switch (number)
+	{
+	case 49:
+		playerRace = Character::Cz³owiek;
+		break;
+	case 50:
+		playerRace = Character::Elf;
+		break;
+	case 51:
+		playerRace = Character::Krasnolud;
+		break;
+	case 52:
+		playerRace = Character::Gnom;
+		break;
+	}
+
+	do {
+		chooseClass();
+		number = getch();
+	} while (number < 49 || number > 51);
+
+	switch (number)
+	{
+	case 49:
+		playerClass = Character::Wojownik;
+		break;
+	case 50:
+		playerClass = Character::£ucznik;
+		break;
+	case 51:
+		playerClass = Character::£otrzyk;
+		break;
+	}
+
+	noecho();
+
+	Character player(name, playerRace, playerClass);
+	clear();
+	printw("Imie: %s\nRasa: %s\nKlasa: %s", player.getName(), player.getRace(), player.getClass());
+}
+
+void Game::chooseRace()
+{
+	clear();
+	printw("Wybierz rase swojej postaci:");
+	mvprintw(2, 0, "1. Czlowiek");
+	mvprintw(3, 0, "2. Elf");
+	mvprintw(4, 0, "3. Krasnolud");
+	mvprintw(2, 15, "4. Gnom");
+	mvprintw(3, 15, "5. ...");
+	mvprintw(4, 15, "6. ...");
+	mvprintw(6, 0, "Wybierz numer: ");
+}
+
+void Game::chooseClass()
+{
+	clear();
+	printw("Wybierz klase swojej postaci:");
+	mvprintw(2, 0, "1. Wojownik");
+	mvprintw(3, 0, "2. Lucznik");
+	mvprintw(4, 0, "3. Lotrzyk");
+	mvprintw(2, 15, "4. ...");
+	mvprintw(3, 15, "5. ...");
+	mvprintw(4, 15, "6. ...");
+	mvprintw(6, 0, "Wybierz numer: ");
 }
 
 void Game::runMenu()
 {
+	const char option1[12] = "1. Nowa Gra";
+	const char option2[15] = "2. Wczytaj gre";
+	const char option3[9] = "3. Wyjdz";
+
 	do
 	{
 		keypad(stdscr, true);
@@ -103,7 +192,7 @@ void Game::runMenu()
 			{
 			case 1:
 				clear();
-				printw("Tutaj rozpoczniesz nowa rozgrywke\n");
+				createPlayer();
 				play();
 				getch();
 				break;
@@ -125,27 +214,27 @@ void Game::runMenu()
 void Game::play()
 {
 	state = GAME;
-	/*Player player(300, "Rafal", "Krasnolud", "Wojownik", 40, 30, 100, 76, 14);
-	Enemy wolf(200, "Wilk", "Wilk", "Wojownik", 20, 53, 74, 69, 9);					//Example fight
+	/*Character player(300, "Rafal", Krasnolud, Wojownik, 40, 30, 100, 76, 14);
+	Character wolf(200, "Wilk", Wilk, Wojownik, 20, 53, 74, 69, 9);					//Example fight
 	state = FIGHT;
 	fight(player, wolf);*/
 	state = MENU;
 }
 
-void Game::fight(Player a, Enemy b)
+void Game::fight(Character a, Character b)
 {
 	clear();
-	printw("Rozpoczynasz walke z %s\n", b.getChar(Character::Name));
+	printw("Rozpoczynasz walke z %s\n", b.getName());
 	getch();
 
 	//Character a, values
-	unsigned short int a_health = a.getValue(Character::Health);
+	unsigned short int a_health = a.getValue(Character::getHealth);
 	unsigned short int a_defense = (a.getValue(Character::Defense)/2);
 	unsigned short int a_rawDamage;
 	unsigned short int a_damage;
 
 	//Character b, values
-	unsigned short int b_health = b.getValue(Character::Health);
+	unsigned short int b_health = b.getValue(Character::getHealth);
 	unsigned short int b_defense = (b.getValue(Character::Defense)/2);
 	unsigned short int b_rawDamage;
 	unsigned short int b_damage;
@@ -164,7 +253,7 @@ void Game::fight(Player a, Enemy b)
 		if (a_hitchance <= (a.getValue(Character::HitChance)*10))  //Character a, randomazing hitchance
 		{
 			a_rawDamage = rand() % ((a.getValue(Character::DamageMax) - a.getValue(Character::DamageMin)) + 1) + a.getValue(Character::DamageMin);
-			if (a_critchance <= (a.getValue(Character::CritChance) * 10))  //Character a - checking if crit
+			if (a_critchance <= (a.getValue(Character::CritChance) * 10))  //Character a - check if crit
 			{
 				a_rawDamage *= 2;
 			}
@@ -182,7 +271,7 @@ void Game::fight(Player a, Enemy b)
 		if (b_hitchance <= (b.getValue(Character::HitChance)*10))  //Character b, randomazing hitchance
 		{
 			b_rawDamage = rand() % ((b.getValue(Character::DamageMax) - b.getValue(Character::DamageMin)) + 1) + b.getValue(Character::DamageMin);
-			if (b_critchance <= (b.getValue(Character::CritChance) * 10))  //Character b - checking if crit
+			if (b_critchance <= (b.getValue(Character::CritChance) * 10))  //Character b - check if crit
 			{
 				b_rawDamage *= 2;
 			}
@@ -201,16 +290,16 @@ void Game::fight(Player a, Enemy b)
 		b_health -= a_damage;
 
 		clear();
-		printw("%s zadaje %d obrazen %s\n", a.getChar(Character::Name), a_damage, b.getChar(Character::Name));
-		printw("%s zadaje %d obrazen %s\n\n", b.getChar(Character::Name), b_damage, a.getChar(Character::Name));
+		printw("%s zadaje %d obrazen %s\n", a.getName(), a_damage, b.getName());
+		printw("%s zadaje %d obrazen %s\n\n", b.getName(), b_damage, a.getName());
 
-		printw("Punkty zycia %s: %d\n",a.getChar(Character::Name), a_health);
-		printw("Punkty zycia %s: %d\n",b.getChar(Character::Name), b_health);
+		printw("Punkty zycia %s: %d\n",a.getName(), a_health);
+		printw("Punkty zycia %s: %d\n",b.getName(), b_health);
 
 		if (a_health == 0 || b_health == 0)  //When Character has 0 health
 		{
-			a.setValue(a.Health, a_health);
-			b.setValue(b.Health, b_health);
+			a.setValue(Character::setHealth, a_health);
+			b.setValue(Character::setHealth, b_health);
 			//getch();
 			state = GAME;
 		}

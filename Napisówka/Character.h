@@ -2,10 +2,14 @@
 
 class Character
 {
+public:
+	enum Rasa { NULL_Race, Cz³owiek, Elf, Krasnolud, Gnom };
+	enum Klasa { NULL_Class, Wojownik, £ucznik, £otrzyk };
 private:
 	char *charName;
-	char *charRace;
-	char *charClass;
+	Rasa charRace;
+	Klasa charClass;
+
 	unsigned short int health;
 	unsigned short int hit_chance;
 	unsigned short int crit_chance;
@@ -13,12 +17,13 @@ private:
 	unsigned short int damage_max;
 	unsigned short int defense_value;
 public:
-	Character(unsigned short int = 1, char[] = "Nazwa", char[] = "Rasa", char[] = "Klasa", unsigned int = 1, unsigned short int = 1, unsigned short int = 3, unsigned int = 50, unsigned int = 5);
+	Character(char[] = "Nazwa", Rasa = NULL_Race, Klasa = NULL_Class, unsigned short int = 1, unsigned int = 1, unsigned short int = 1, unsigned short int = 3, unsigned int = 50, unsigned int = 5);
 	~Character();
-	enum Value { Health, defenseValueMinus, defenseValuePlus, hit_chanceMinus, hit_chancePlus, crit_chanceMinus, crit_chancePlus, damage_minMinus, damage_minPlus, damage_maxMinus, damage_maxPlus, 
-				Defense, HitChance, CritChance, DamageMin, DamageMax, Name, Race, Class};
-	virtual void move();
-	virtual int getValue(Value);
-	virtual void setValue(Value, int);
-	virtual char* getChar(Value);
+	enum settingValue {setHealth, defenseValueMinus, defenseValuePlus, hit_chanceMinus, hit_chancePlus, crit_chanceMinus, crit_chancePlus, damage_minMinus, damage_minPlus, damage_maxMinus, damage_maxPlus};
+	enum gettingValue {getHealth, Defense, HitChance, CritChance, DamageMin, DamageMax};
+	virtual int getValue(gettingValue);
+	virtual void setValue(settingValue, int);
+	virtual char* getName();
+	virtual char* getRace();
+	virtual char* getClass();
 };
