@@ -20,7 +20,7 @@ public:
 	Character(char[] = "Nazwa", Rasa = NULL_Race, Klasa = NULL_Class, unsigned short int = 1, unsigned int = 1, unsigned short int = 1, unsigned short int = 3, unsigned int = 50, unsigned int = 5);
 	~Character();
 	enum settingValue {setHealth, defenseValueMinus, defenseValuePlus, hit_chanceMinus, hit_chancePlus, crit_chanceMinus, crit_chancePlus, damage_minMinus, damage_minPlus, damage_maxMinus, damage_maxPlus};
-	enum gettingValue {getHealth, Defense, HitChance, CritChance, DamageMin, DamageMax};
+	enum gettingValue {getHealth, Defense, HitChance, CritChance, DamageMin, DamageMax, CharacterRace, CharacterClass};
 	virtual int getValue(gettingValue);
 	virtual void setValue(settingValue, int);
 	virtual char* getName();

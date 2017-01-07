@@ -2,7 +2,7 @@
 
 Character::Character(char name[], Rasa race, Klasa cClass, unsigned short int x, unsigned int defense, unsigned short int damageMIN, unsigned short int damageMAX, unsigned int hitChance, unsigned int critChance)
 {
-	charName = new char[sizeof(name)];
+	charName = new char[sizeof name];
 	charName = name;
 	charRace = race;
 	charClass = cClass;
@@ -36,6 +36,10 @@ int Character::getValue(gettingValue value)
 		return hit_chance;
 	case CritChance:
 		return crit_chance;
+	case CharacterRace:
+		return (int)charRace;
+	case CharacterClass:
+		return (int)charClass;
 	}
 }
 
