@@ -40,8 +40,8 @@ public:
 		unsigned short int damage_min;
 		unsigned short int damage_max;
 		unsigned short int defense_value;
-		int charRace;
-		int charClass;
+		unsigned short int charRace;
+		unsigned short int charClass;
 	};
 };
 

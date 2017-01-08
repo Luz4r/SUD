@@ -2,13 +2,17 @@
 
 void Game::intro()
 {
+	int ycord, xcord;
+	char mesg[] = "Witaj w mojej grze ktora nie wyjdzie, ale probuje sie czegos nauczyc!";
+	getmaxyx(stdscr, ycord, xcord);
 	attron(COLOR_PAIR(1));
 	attron(A_BOLD);
-	printw("Witaj w mojej grze ktora nie wyjdzie, ale probuje sie czegos nauczyc!\n");
+	mvprintw(ycord/3, (xcord-strlen(mesg))/2,"%s", mesg);
 	attroff(A_BOLD);
 	attroff(COLOR_PAIR(1));
 	attron(A_REVERSE);
-	printw("ENJOY!\n");
+	mvprintw((ycord/2)+2, (xcord-6)/2, "ENJOY!\n");
+	move((ycord / 2) + 2, (xcord / 2) + 3);
 	attroff(A_REVERSE);
 }
 
@@ -29,6 +33,7 @@ Game::Game()
 
 Game::~Game()
 {
+	delete player;
 	endwin();
 }
 
@@ -69,7 +74,7 @@ Character Game::createPlayer()
 
 	printw("Podaj swoje imie: ");
 	echo();
-	getstr(name = new char [sizeof(name)]);
+	getstr(name = new char[sizeof name]);
 
 	do {
 		chooseRace();
@@ -114,7 +119,7 @@ Character Game::createPlayer()
 
 	Character* createdPlayer = new Character(name, playerRace, playerClass, 500, 50, 50, 55, 80, 50);		//example player character with stats, which goes to fight
 	clear();
-	printw("Imie: %s\nRasa: %s\nKlasa: %s", createdPlayer -> getName(), createdPlayer -> getRace(), createdPlayer -> getClass());
+	printw("Imie: %s\nRasa: %s\nKlasa: %s", createdPlayer -> getCharName(), createdPlayer -> getRace(), createdPlayer -> getClass());
 
 	saveGame(*createdPlayer);
 
@@ -198,12 +203,12 @@ void Game::runMenu()
 			case 1:
 				clear();
 				*player = createPlayer();
+				loadGame();
 				state = GAME;
 				getch();
 				break;
 			case 2:
 				clear();
-				printw("Tutaj wczytasz swoja zapisana gre\n");
 				loadGame();
 				state = GAME;
 				getch();
@@ -219,47 +224,75 @@ void Game::runMenu()
 
 void Game::saveGame(Character& savingPlayer)
 {
-	Gamesaver save =
-	{
-		savingPlayer.getValue(Character::getHealth),
-		savingPlayer.getValue(Character::HitChance),
-		savingPlayer.getValue(Character::CritChance),
-		savingPlayer.getValue(Character::DamageMin),
-		savingPlayer.getValue(Character::DamageMax),
-		savingPlayer.getValue(Character::Defense),
-		savingPlayer.getValue(Character::CharacterRace),
-		savingPlayer.getValue(Character::CharacterClass)
-	};
-
-	string charName = savingPlayer.getName();
-
-	ofstream file("save1.bin", ios::binary);
-	if (file.good())
-	{
-		file.write((const char *)& save, sizeof save);
-		file.write((charName).c_str(), (sizeof savingPlayer.getName() + 3));
-	}
-	else
-	{
+	unsigned short int choice;
+		
+	do {
 		clear();
-		printw("Wystapil blad podczas zapisywania pliku");
+		attron(A_REVERSE);
+		printw("Czy napewno chcesz zapisac gre?!\n\n");
+		printw("To usunie twoje poprzednie zapisy!\n\n");
+		attroff(A_REVERSE);
+		printw("Wybierz liczbe:\n\n");
+		printw("1. TAK\n");
+		printw("2. NIE\n\n");
+		printw(": ");
+		echo();
+		choice = getch();
+		noecho();
+	} while (choice != 49 && choice != 50);
+
+	if (choice == 49)
+	{
+		Gamesaver save =
+		{
+			savingPlayer.getValue(Character::getHealth),
+			savingPlayer.getValue(Character::HitChance),
+			savingPlayer.getValue(Character::CritChance),
+			savingPlayer.getValue(Character::DamageMin),
+			savingPlayer.getValue(Character::DamageMax),
+			savingPlayer.getValue(Character::Defense),
+			savingPlayer.getValue(Character::CharacterRace),
+			savingPlayer.getValue(Character::CharacterClass)
+		};
+
+		ofstream file("save.bin", ios::binary);
+		if (file.good())
+		{
+			file.write((const char *)& save, sizeof save);
+			file.write((savingPlayer.getStringName()).c_str(), savingPlayer.getStringName().size() + 1);
+			file.close();
+		}
+		else
+		{
+			clear();
+			printw("Wystapil blad podczas zapisywania pliku");
+		}
+	}
+	else {
+		clear();
+		printw("Nie wykonano zapisu");
 	}
 }
 
 void Game::loadGame()
 {
-	ifstream file("save1.bin", ios::binary);
-
 	Gamesaver save;
-
 	string name;
 
-	file.read((char *)& save, sizeof (save));
-	getline(file, name, '\0');
-	
-	char* charName = (char *)(const char*)(name.c_str());
+	ifstream file("save.bin", ios::binary);
 
-	player = new Character(charName, Character::Rasa(save.charRace), Character::Klasa(save.charRace), save.health, save.defense_value, save.damage_min, save.damage_max, save.hit_chance, save.crit_chance);
+	if (file.good())
+	{
+		file.read((char *)& save, sizeof(save));
+		getline(file, name, '\0');
+	
+		player = new Character(name, Character::Rasa(save.charRace), Character::Klasa(save.charClass), save.health, save.defense_value, save.damage_min, save.damage_max, save.hit_chance, save.crit_chance);
+	}
+	else
+	{
+		printw("Twoj zapis jest niemozliwy do odczytania");
+	}
+	file.close();
 }
 
 void Game::play()
@@ -274,7 +307,7 @@ void Game::fight(Character a, Character b)
 {
 	state = FIGHT;
 	clear();
-	printw("Rozpoczynasz walke z %s\n\n", b.getName());
+	printw("Rozpoczynasz walke z %s\n\n", b.getCharName());
 
 	//Character a, values
 	unsigned short int a_health = a.getValue(Character::getHealth);
@@ -288,8 +321,8 @@ void Game::fight(Character a, Character b)
 	unsigned short int b_rawDamage;
 	unsigned short int b_damage;
 
-	printw("Punkty zycia %s: %d\n", a.getName(), a_health);
-	printw("Punkty zycia %s: %d\n\n", b.getName(), b_health);
+	printw("Punkty zycia %s: %d\n", a.getCharName(), a_health);
+	printw("Punkty zycia %s: %d\n\n", b.getCharName(), b_health);
 	getch();
 
 
@@ -343,11 +376,11 @@ void Game::fight(Character a, Character b)
 		b_health -= a_damage;
 
 		clear();
-		printw("%s zadaje %d obrazen %s\n", a.getName(), a_damage, b.getName());
-		printw("%s zadaje %d obrazen %s\n\n", b.getName(), b_damage, a.getName());
+		printw("%s zadaje %d obrazen %s\n", a.getCharName(), a_damage, b.getCharName());
+		printw("%s zadaje %d obrazen %s\n\n", b.getCharName(), b_damage, a.getCharName());
 
-		printw("Punkty zycia %s: %d\n",a.getName(), a_health);
-		printw("Punkty zycia %s: %d\n",b.getName(), b_health);
+		printw("Punkty zycia %s: %d\n",a.getCharName(), a_health);
+		printw("Punkty zycia %s: %d\n",b.getCharName(), b_health);
 
 		if (a_health == 0 || b_health == 0)  //When Character has 0 health
 		{
@@ -356,9 +389,9 @@ void Game::fight(Character a, Character b)
 			getch();
 			clear();
 			if (a_health == 0)
-				printw("Wygrywa: %s", b.getName());
+				printw("Wygrywa: %s", b.getCharName());
 			else
-				printw("Wygrywa: %s", a.getName());
+				printw("Wygrywa: %s", a.getCharName());
 			state = GAME;
 		}
 		getch();

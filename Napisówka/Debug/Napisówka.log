@@ -1,0 +1,5 @@
+﻿  Game.cpp
+c:\users\rafał\documents\github\napisowka\napisówka\game.cpp(22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\rafał\documents\github\napisowka\napisówka\game.cpp(256): warning C4838: conversion from 'int' to 'unsigned short' requires a narrowing conversion
+  Napisówka.vcxproj -> C:\Users\Rafał\Documents\GitHub\Napisowka\Debug\Napisówka.exe
+  Napisówka.vcxproj -> C:\Users\Rafał\Documents\GitHub\Napisowka\Debug\Napisówka.pdb (Partial PDB)

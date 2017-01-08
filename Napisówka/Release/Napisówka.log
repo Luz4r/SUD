@@ -1,0 +1,29 @@
+﻿  Character.cpp
+c:\users\rafał\documents\github\napisowka\napisówka\Game.h(25): error C2061: syntax error: identifier 'Character'
+c:\users\rafał\documents\github\napisowka\napisówka\Player.h(6): error C2504: 'Character': base class undefined
+c:\users\rafał\documents\github\napisowka\napisówka\Enemy.h(6): error C2504: 'Character': base class undefined
+c:\users\rafał\documents\github\napisowka\napisówka\NPC.h(6): error C2504: 'Character': base class undefined
+  Enemy.cpp
+c:\users\rafał\documents\github\napisowka\napisówka\Game.h(25): error C2061: syntax error: identifier 'Character'
+c:\users\rafał\documents\github\napisowka\napisówka\Player.h(6): error C2504: 'Character': base class undefined
+c:\users\rafał\documents\github\napisowka\napisówka\NPC.h(6): error C2504: 'Character': base class undefined
+  Game.cpp
+c:\users\rafał\documents\github\napisowka\napisówka\Player.h(6): error C2504: 'Character': base class undefined
+c:\users\rafał\documents\github\napisowka\napisówka\Enemy.h(6): error C2504: 'Character': base class undefined
+c:\users\rafał\documents\github\napisowka\napisówka\NPC.h(6): error C2504: 'Character': base class undefined
+Game.cpp(128): error C2039: 'setValue': is not a member of 'Player'
+  c:\users\rafał\documents\github\napisowka\napisówka\Player.h(4): note: see declaration of 'Player'
+Game.cpp(129): error C2664: 'void Game::fight(Character,Character)': cannot convert argument 1 from 'Enemy' to 'Character'
+  Game.cpp(129): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  main.cpp
+c:\users\rafał\documents\github\napisowka\napisówka\Player.h(6): error C2504: 'Character': base class undefined
+c:\users\rafał\documents\github\napisowka\napisówka\Enemy.h(6): error C2504: 'Character': base class undefined
+c:\users\rafał\documents\github\napisowka\napisówka\NPC.h(6): error C2504: 'Character': base class undefined
+  NPC.cpp
+c:\users\rafał\documents\github\napisowka\napisówka\Game.h(25): error C2061: syntax error: identifier 'Character'
+c:\users\rafał\documents\github\napisowka\napisówka\Player.h(6): error C2504: 'Character': base class undefined
+c:\users\rafał\documents\github\napisowka\napisówka\Enemy.h(6): error C2504: 'Character': base class undefined
+  Player.cpp
+c:\users\rafał\documents\github\napisowka\napisówka\Game.h(25): error C2061: syntax error: identifier 'Character'
+c:\users\rafał\documents\github\napisowka\napisówka\Enemy.h(6): error C2504: 'Character': base class undefined
+c:\users\rafał\documents\github\napisowka\napisówka\NPC.h(6): error C2504: 'Character': base class undefined

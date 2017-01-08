@@ -1,8 +1,7 @@
 #include "Character.h"
 
-Character::Character(char name[], Rasa race, Klasa cClass, unsigned short int x, unsigned int defense, unsigned short int damageMIN, unsigned short int damageMAX, unsigned int hitChance, unsigned int critChance)
+Character::Character(string name, Rasa race, Klasa cClass, unsigned short int x, unsigned int defense, unsigned short int damageMIN, unsigned short int damageMAX, unsigned int hitChance, unsigned int critChance)
 {
-	charName = new char[sizeof name];
 	charName = name;
 	charRace = race;
 	charClass = cClass;
@@ -37,9 +36,9 @@ int Character::getValue(gettingValue value)
 	case CritChance:
 		return crit_chance;
 	case CharacterRace:
-		return (int)charRace;
+		return (unsigned short int)charRace;
 	case CharacterClass:
-		return (int)charClass;
+		return (unsigned short int)charClass;
 	}
 }
 
@@ -83,9 +82,15 @@ void Character::setValue(settingValue value, int x)
 	}
 }
 
-char* Character::getName()
+char * Character::getCharName()
 {
-		return charName;
+	char* Name = (char *)(const char*)(charName.c_str());
+	return Name;
+}
+
+string Character::getStringName()
+{
+	return charName;
 }
 
 char* Character::getRace()

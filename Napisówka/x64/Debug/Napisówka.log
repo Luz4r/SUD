@@ -1,0 +1,27 @@
+﻿  main.cpp
+  Game.cpp
+c:\users\rafał\documents\github\napisowka\napisówka\game.cpp(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\rafał\documents\github\napisowka\napisówka\game.cpp(232): warning C4838: conversion from 'int' to 'unsigned short' requires a narrowing conversion
+  Character.cpp
+  Generating Code...
+c:\users\rafał\documents\github\napisowka\napisówka\character.cpp(44): warning C4715: 'Character::getValue': not all control paths return a value
+c:\users\rafał\documents\github\napisowka\napisówka\character.cpp(121): warning C4715: 'Character::getClass': not all control paths return a value
+c:\users\rafał\documents\github\napisowka\napisówka\character.cpp(106): warning C4715: 'Character::getRace': not all control paths return a value
+Game.obj : error LNK2019: unresolved external symbol attroff referenced in function "private: void __cdecl Game::intro(void)" (?intro@Game@@AEAAXXZ)
+Game.obj : error LNK2019: unresolved external symbol attron referenced in function "private: void __cdecl Game::intro(void)" (?intro@Game@@AEAAXXZ)
+Game.obj : error LNK2019: unresolved external symbol clear referenced in function "private: void __cdecl Game::chooseClass(void)" (?chooseClass@Game@@AEAAXXZ)
+Game.obj : error LNK2019: unresolved external symbol echo referenced in function "private: class Character __cdecl Game::createPlayer(void)" (?createPlayer@Game@@AEAA?AVCharacter@@XZ)
+Game.obj : error LNK2019: unresolved external symbol endwin referenced in function "public: __cdecl Game::Game(void)" (??0Game@@QEAA@XZ)
+Game.obj : error LNK2019: unresolved external symbol getstr referenced in function "private: class Character __cdecl Game::createPlayer(void)" (?createPlayer@Game@@AEAA?AVCharacter@@XZ)
+Game.obj : error LNK2019: unresolved external symbol has_colors referenced in function "public: __cdecl Game::Game(void)" (??0Game@@QEAA@XZ)
+Game.obj : error LNK2019: unresolved external symbol init_pair referenced in function "private: void __cdecl Game::createColors(void)" (?createColors@Game@@AEAAXXZ)
+Game.obj : error LNK2019: unresolved external symbol initscr referenced in function "public: __cdecl Game::Game(void)" (??0Game@@QEAA@XZ)
+Game.obj : error LNK2019: unresolved external symbol keypad referenced in function "private: void __cdecl Game::runMenu(void)" (?runMenu@Game@@AEAAXXZ)
+Game.obj : error LNK2019: unresolved external symbol mvprintw referenced in function "private: void __cdecl Game::chooseClass(void)" (?chooseClass@Game@@AEAAXXZ)
+Game.obj : error LNK2019: unresolved external symbol noecho referenced in function "private: class Character __cdecl Game::createPlayer(void)" (?createPlayer@Game@@AEAA?AVCharacter@@XZ)
+Game.obj : error LNK2019: unresolved external symbol printw referenced in function "private: void __cdecl Game::chooseClass(void)" (?chooseClass@Game@@AEAAXXZ)
+Game.obj : error LNK2019: unresolved external symbol start_color referenced in function "private: void __cdecl Game::createColors(void)" (?createColors@Game@@AEAAXXZ)
+Game.obj : error LNK2019: unresolved external symbol wgetch referenced in function "private: class Character __cdecl Game::createPlayer(void)" (?createPlayer@Game@@AEAA?AVCharacter@@XZ)
+Game.obj : error LNK2001: unresolved external symbol __imp_stdscr
+C:\Users\Rafał\Documents\GitHub\Napisowka\Napisówka\lib\pdcurses.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+C:\Users\Rafał\Documents\GitHub\Napisowka\x64\Debug\Napisówka.exe : fatal error LNK1120: 16 unresolved externals
