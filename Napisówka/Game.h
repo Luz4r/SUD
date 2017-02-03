@@ -1,47 +1,74 @@
 #pragma once
 #include "curses.h"
+#include "Tile.h"
 #include <ctime>
 #include <cstdlib>
-#include "Character.h"
 #include <fstream>
-#include <iostream>
-#include <string>
 
 using namespace std;
 
 class Game
 {
+public:
+	typedef void(Game::*pointerType)();
+	typedef void(Game::*pointerType2)(string);
 private:
 	Character* player;
-	unsigned short int which = 1;
-	unsigned short int mark;
-	void intro();
-	void createColors();
-	Character createPlayer();
+	void createPlayer();
 	void chooseRace();
 	void chooseClass();
+
+	int ammountOfTiles;
+	Tile currentTile;
+	map<vector<int>, Tile>AllTiles;
+
+
+	map <string, pointerType> Commands;
+	map <string, pointerType2> Commands2;
+	pointerType myfunction;
+	pointerType2 myfunction2;
+	void checkInput();
+
+	int ycord, xcord;
+	void createColors();
+	void intro();
 	void play();
-	void fight(Character, Character);
 	void runMenu();
-	void saveGame(Character&);
 	void loadGame();
+	void wait(int seconds);
+
+	void createCommands();
+	void saveGame();
+	void quit();
+	void fight(string);
+	void playerInfo();
+	void goToMenu();
+	void move_north();
+	void move_south();
+	void move_west();
+	void move_east();
+	void look();
 
 	enum Gamestate { MENU, GAME, END, FIGHT };
 	Gamestate state;
 public:
 	Game();
 	~Game();
+
 	void runGame();
-	struct Gamesaver
+
+	struct Playersaver
 	{
-		unsigned short int health;
-		unsigned short int hit_chance;
-		unsigned short int crit_chance;
-		unsigned short int damage_min;
-		unsigned short int damage_max;
-		unsigned short int defense_value;
-		unsigned short int charRace;
-		unsigned short int charClass;
+		int health;
+		int hit_chance;
+		int crit_chance;
+		int damage_min;
+		int damage_max;
+		int defense_value;
+		int charRace;
+		int charClass;
+		int x;
+		int y;
 	};
 };
 

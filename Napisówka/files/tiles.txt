@@ -1,0 +1,20 @@
+Spawn
+Tutaj jest opis lokacji
+0
+0
+Poszedles na wschod
+Teraz mozesz wrocic na spawn
+1
+0
+Poszedles na polnoc
+Teraz mozesz wrocic na spawn
+0
+1
+Poszedles na zachod
+Teraz mozesz wrocic na spawn
+-1
+0
+Poszedles na polodnie
+Teraz mozesz wrocic na spawn
+0
+-1

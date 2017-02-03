@@ -1,17 +1,19 @@
 #include "Character.h"
 
-Character::Character(string name, Rasa race, Klasa cClass, unsigned short int x, unsigned int defense, unsigned short int damageMIN, unsigned short int damageMAX, unsigned int hitChance, unsigned int critChance)
+Character::Character(string name, Rasa race, Klasa cClass, unsigned short int a, unsigned short int defense, unsigned short int damageMIN, unsigned short int damageMAX, unsigned short int hitChance, unsigned short int critChance, int cx, int cy)
 {
 	charName = name;
 	charRace = race;
 	charClass = cClass;
 
-	health = x;
+	health = a;
 	defense_value = defense;
 	damage_min = damageMIN;
 	damage_max = damageMAX;
 	crit_chance = critChance;
 	hit_chance = hitChance;
+	x = cx;
+	y = cy;
 }
 
 
@@ -36,55 +38,77 @@ int Character::getValue(gettingValue value)
 	case CritChance:
 		return crit_chance;
 	case CharacterRace:
-		return (unsigned short int)charRace;
+		return (int)charRace;
 	case CharacterClass:
-		return (unsigned short int)charClass;
+		return (int)charClass;
+	case CORDX:
+		return x;
+	case CORDY:
+		return y;
 	}
 }
 
-void Character::setValue(settingValue value, int x)
+void Character::setValue(settingValue value, int a)
 {
 	switch (value)
 	{
 	case setHealth:
-		health = x;
+		health = a;
 		break;
 	case defenseValuePlus:
-		defense_value += x;
+		defense_value += a;
 		break;
 	case defenseValueMinus:
-		defense_value -= x;
+		defense_value -= a;
 		break;
 	case damage_maxPlus:
-		damage_max += x;
+		damage_max += a;
 		break;
 	case damage_maxMinus:
-		damage_max -= x;
+		damage_max -= a;
 		break;
 	case damage_minPlus:
-		damage_min += x;
+		damage_min += a;
 		break;
 	case damage_minMinus:
-		damage_min -= x;
+		damage_min -= a;
 		break;
 	case hit_chancePlus:
-		hit_chance += x;
+		hit_chance += a;
 		break;
 	case hit_chanceMinus:
-		hit_chance -= x;
+		hit_chance -= a;
 		break;
 	case crit_chancePlus:
-		crit_chance += x;
+		crit_chance += a;
 		break;
 	case crit_chanceMinus:
-		crit_chance -= x;
+		crit_chance -= a;
+		break;
+	case CORDX_plus:
+		x += a;
+		break;
+	case CORDX_minus:
+		x -= a;
+		break;
+	case CORDY_plus:
+		y += a;
+		break;
+	case CORDY_minus:
+		y -= a;
+		break;
+	case CORDX_replace:
+		x = a;
+		break;
+	case CORDY_replace:
+		y = a;
 		break;
 	}
 }
 
 char * Character::getCharName()
 {
-	char* Name = (char *)(const char*)(charName.c_str());
+	char* Name = (char *)(charName.c_str());
 	return Name;
 }
 
