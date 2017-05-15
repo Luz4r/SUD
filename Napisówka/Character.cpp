@@ -16,6 +16,11 @@ Character::Character(string name, Rasa race, Klasa cClass, unsigned short int a,
 	y = cy;
 }
 
+
+Character::~Character()
+{
+}
+
 int Character::getValue(gettingValue value)
 {
 	switch (value)

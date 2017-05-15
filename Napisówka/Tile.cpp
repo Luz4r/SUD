@@ -2,13 +2,13 @@
 
 
 
-Tile::Tile(string tileName, string desc, int cx, int cy)
+Tile::Tile(string tileName, string desc, int cx, int cy/*, map <string, Character>mobs*/)
 {
 	name = tileName;
 	description = desc;
 	cords.push_back(cx);
 	cords.push_back(cy);
-
+	/*tileMobs = mobs;*/
 }
 
 

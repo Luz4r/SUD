@@ -12,7 +12,7 @@ private:
 	string description;
 
 public:
-	Tile(string = "Nazwa", string = "Opis", int = 0, int = 0);
+	Tile(string = "Nazwa", string = "Opis", int = 0, int = 0/*, map <string, Character>*/);
 	~Tile();
 
 	vector<int> cords;
