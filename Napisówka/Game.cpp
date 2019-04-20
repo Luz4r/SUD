@@ -143,7 +143,7 @@ void Game::checkInput()
 	char* buffor = new char[50];
 	char* buffor2 = new char[50];
 
-	printw("Wpisz komende [save, quit, kill <mob>, info, menu, north, south, west, east]: ");
+	printw("Wpisz komende [save, quit, kill <mob>, info, menu, north, south, west, east, look]: ");
 	echo();
 	scanw("%s%s", buffor, buffor2);
 	printw("\n");
@@ -541,14 +541,13 @@ void Game::quit()
 
 void Game::fight(string str)
 {
-	clear();
-	Character b;
 
 	auto mob = currentTile.tileMobs.find(str);
 
 	if (mob != currentTile.tileMobs.end())
 	{
-		b = mob->second;
+		clear();
+		Character b = mob->second;
 		state = FIGHT;
 		printw("Rozpoczynasz walke z %s\n\n", b.getCharName());
 
@@ -646,7 +645,7 @@ void Game::fight(string str)
 		}
 	}
 	else
-		printw("Z kim chcesz walczyc?");
+		printw("Z kim chcesz walczyc?\n");
 }
 
 void Game::playerInfo()
