@@ -129,8 +129,8 @@ char* Character::getRace()
 		return "Elf";
 	case Krasnolud:
 		return "Krasnolud";
-	case Gnom:
-		return "Gnom";
+	case Gnome:
+		return "Gnome";
 	}
 }
 

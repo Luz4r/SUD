@@ -7,68 +7,41 @@
 
 using namespace std;
 
+class Player_Commands;
+
 class Game
 {
 public:
-	typedef void(Game::*pointerType)();
-	typedef void(Game::*pointerType2)(string);
-private:
+	typedef void(Player_Commands::*pointer_type)();
+	typedef void(Player_Commands::*pointer_type2)(string);
+	enum Gamestate { MENU, GAME, END, FIGHT };
+	Tile currentTile;
 	Character* player;
+	Gamestate state;
+	map<vector<int>, Tile>all_tiles;
+	int ammount_of_tiles;
+private:
+	Player_Commands *player_commands;
 	void createPlayer();
 	void chooseRace();
 	void chooseClass();
 
-	int ammountOfTiles;
-	Tile currentTile;
-	map<vector<int>, Tile>AllTiles;
-
-
-	map <string, pointerType> Commands;
-	map <string, pointerType2> Commands2;
-	pointerType myfunction;
-	pointerType2 myfunction2;
+	map <string, pointer_type> commands;
+	map <string, pointer_type2> commands2;
+	pointer_type myfunction;
+	pointer_type2 myfunction2;
 	void checkInput();
 
 	int ycord, xcord;
-	void createColors();
+	void create_colors();
 	void intro();
 	void play();
-	void runMenu();
-	void loadGame();
-	void wait(int seconds);
+	void run_menu();
 
-	void createCommands();
-	void saveGame();
-	void quit();
-	void fight(string);
-	void playerInfo();
-	void goToMenu();
-	void move_north();
-	void move_south();
-	void move_west();
-	void move_east();
-	void look();
-
-	enum Gamestate { MENU, GAME, END, FIGHT };
-	Gamestate state;
+	void create_commands();
 public:
 	Game();
 	~Game();
 
-	void runGame();
-
-	struct Playersaver
-	{
-		int health;
-		int hit_chance;
-		int crit_chance;
-		int damage_min;
-		int damage_max;
-		int defense_value;
-		int charRace;
-		int charClass;
-		int x;
-		int y;
-	};
+	void run_game();
 };
-

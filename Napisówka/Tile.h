@@ -3,6 +3,7 @@
 #include <vector>
 #include "Character.h"
 
+
 using namespace std;
 
 class Tile
@@ -16,7 +17,7 @@ public:
 	~Tile();
 
 	vector<int> cords;
-	map <string, Character> tileMobs;
+	map <string, Character> tile_mobs;
 	string getStringName();
 	char* getDesc();
 	string getStringDesc();

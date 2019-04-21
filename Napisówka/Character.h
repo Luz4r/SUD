@@ -6,7 +6,7 @@ using namespace std;
 class Character
 {
 public:
-	enum Rasa { NULL_Race, Cz³owiek, Elf, Krasnolud, Gnom, Wolf };
+	enum Rasa { NULL_Race, Cz³owiek, Elf, Krasnolud, Gnome, Wilk };
 	enum Klasa { NULL_Class, Wojownik, £ucznik, £otrzyk };
 private:
 	string charName;
