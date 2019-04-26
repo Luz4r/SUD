@@ -123,7 +123,7 @@ char* Character::getRace()
 	{
 	case NULL_Race:
 		return "Brak rasy";
-	case Cz³owiek:
+	case Czlowiek:
 		return "Czlowiek";
 	case Elf:
 		return "Elf";
@@ -142,9 +142,9 @@ char* Character::getClass()
 		return "Brak klasy";
 	case Wojownik:
 		return "Wojownik";
-	case £ucznik:
+	case Lucznik:
 		return "Lucznik";
-	case £otrzyk:
+	case Lotrzyk:
 		return "Lotrzyk";
 	}
 }

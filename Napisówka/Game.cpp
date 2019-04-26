@@ -208,7 +208,7 @@ void Game::createPlayer()
 	switch (number)
 	{
 	case '1':
-		playerRace = Character::Cz³owiek;
+		playerRace = Character::Czlowiek;
 		break;
 	case '2':
 		playerRace = Character::Elf;
@@ -232,10 +232,10 @@ void Game::createPlayer()
 		playerClass = Character::Wojownik;
 		break;
 	case '2':
-		playerClass = Character::£ucznik;
+		playerClass = Character::Lucznik;
 		break;
 	case '3':
-		playerClass = Character::£otrzyk;
+		playerClass = Character::Lotrzyk;
 		break;
 	}
 
